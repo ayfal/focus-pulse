@@ -22,7 +22,6 @@ Download all files from the `FocusPulse/word-vba` folder:
 * `FocusPulseForm.frm`
 * `FocusPulseForm.frx`
 * `Module_FocusPulse.bas`
-* (any other `.frm`, `.frx`, `.bas`, `.cls` files)
 
 Keep them together in the same folder.
 
