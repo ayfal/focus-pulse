@@ -29,9 +29,7 @@ Keep them together in the same folder.
 
 ## **2. Create a new macro-enabled Word file**
 
-Because Word does not allow macros in `.docx`, you must use:
-
-* **.docm** — macro-enabled document
+Because Word does not allow macros in `.docx`, you must use: **.docm** — macro-enabled document
 
 **Steps:**
 
