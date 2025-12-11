@@ -33,12 +33,12 @@ Public Sub TimerCallback(ByVal hWnd As LongPtr, ByVal uMsg As Long, _
                          ByVal idEvent As LongPtr, ByVal dwTime As Long)
     If IsWorking Then
         UsedCounter = UsedCounter + TimeSerial(0, InitializerForm.Minutes.Text, 0)
-        msg = "Well done"
+        msg = "Well done, time's up! Go back to your tasklist to reschedule this task"
     Else
         WastedCounter = WastedCounter + TimeSerial(0, InitializerForm.Minutes.Text, 0)
-        msg = "Too bad"
+        msg = "Too bad, you're slacking off! Go to your tasklist and do the next task"
     End If
-    CreateObject("WScript.Shell").Popup msg & ", time's up! Go Back to Your tasks list to reschedule this task" & vbCrLf & _
+    CreateObject("WScript.Shell").Popup msg & vbCrLf & _
          "So far:" & vbCrLf & _
          "• Time Used: " & format(UsedCounter, "hh:mm:ss") & vbCrLf & _
          "• Time Wasted: " & format(WastedCounter, "hh:mm:ss"), _
