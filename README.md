@@ -19,9 +19,10 @@ I personally use this every day all day, and put the document in windows startup
 
 Download all files from the `FocusPulse/word-vba` folder:
 
-* `FocusPulseForm.frm`
-* `FocusPulseForm.frx`
-* `Module_FocusPulse.bas`
+* `InitializerForm.frm`
+* `InitializerForm.frx`
+* `Module1.bas`
+* `ThisDocument.txt`
 
 Keep them together in the same folder.
 
@@ -76,11 +77,10 @@ Project (Document1)
 
 ### **Import the module (.bas)**
 
-1. Right-click **Modules**
-2. Select **Import File…**
-3. Choose the `.bas` file
-
-(If "Modules" does not exist, right-click the project → **Insert → Module** → then right-click "Modules".)
+1. Right-click the project (not a folder)
+   Example: `Project (Document1)`
+2. Click **Import File…**
+3. Select the `Module1.bas` file you downloaded earlier.
 
 ---
 
@@ -89,19 +89,24 @@ Project (Document1)
 1. Right-click the project (not a folder)
    Example: `Project (Document1)`
 2. Click **Import File…**
-3. Select the `.frm` file (the `.frx` file loads automatically)
+3. Select the `InitializerForm.frm` file (the `InitializerForm.frx` file loads automatically)
 
 The form will now appear under **Forms** in the Project Explorer.
 
 ---
 
-## **6. Save and close the VBA editor**
-
-Click **File → Save** inside the VBA editor, then close it.
+### **Copy the code for ThisDocument**
+1. Double-click **ThisDocument** under **Microsoft Word Objects**
+2. Copy all text from `ThisDocument.txt` that you downloaded earlier and paste it into the code window that opened in the VBA editor.
 
 ---
 
-## **7. Enable macros**
+## **6. Close and save the document**
+Close the Word document (click the X) and press Yes to save changes when prompted.
+
+---
+
+## **7. Reopen the document and Enable macros**
 
 When you open your `.docm` file, Word will show:
 
@@ -111,11 +116,31 @@ Click:
 
 **Enable Content**
 
-FocusPulse will not run unless macros are enabled.
+
+# **Using FocusPulse in Word**
+
+## **1. The timer**
+
+When you open the document, the FocusPulse initializer form appears, it indicates that the timer is running in the background.
+
+In the document version, the timer doesn't just nudge you periodically, like in the browser and app versions, it also tracks how long you've been working and how long you've been slacking off.
+
+You tell the timer you are working by clicking the "Start" button on the form, the message next to the button changes to "Work until (the set time)".
+
+When the timer finishes counting down, a message box appears telling you to reschedule this task, and your current stats.
+When you click OK, you're back to "not working" mode, and the message next to the button changes to "Get to work!".
+The timer keeps running in the background in the same pace, and if it ticks while you're not working, it will count that as slacking off time.
+
+When you click "Start" again, the message changes to "Work until (the set time)" again, that timer is killed and a new one is started.
+You can also kill the timer by closing the form (clicking the X in the top-right corner of the form), or the document.
+
+## **2. The scheduler**
+
+Normally you'd have scheduled tasks and unscheduled tasks in your life. The scheduled tasks are probably written in a calendar, if they're one-off tasks, or in a timetable, if they're recurring tasks. The unscheduled tasks are just a list. Somehow they all need to get along. The novel idea here is to put them all in one document, and schedule the unscheduled tasks as well. You don't have to put much effort into scheduling, as you'll continuously reschedule tasks as you go.
+
+The initializer form has 3 rescheduling buttons, They all reschedule the first task in the document. For recurring tasks, press "Next Day" or "Next Week" and they will be rescheduled to their next occurrence. For one-off tasks, press "Next Task" and it will be rescheduled for a few minutes later (according to the timer interval you set in the form). You can of course edit the document manually to reschedule tasks as you see fit, and use Word's sorting functionality to keep tasks in order.
 
 ---
 
-## **8. Reopen the document**
-
-* The form will appear automatically on document open
-
+# **Word of caution**
+If you edit the code in the VBA editor while the timer is running, you're likely to crash Word. All of your open documents(!) will crash when the running timer will try to bring up the message box. Stop the timer first by closing the form, then edit the code. You have been warned.
