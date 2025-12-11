@@ -1,0 +1,6 @@
+*.html text
+*.pyw text
+*.bas text
+*.frm text
+
+*.frx binary
