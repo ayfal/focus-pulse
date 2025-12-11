@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Productivity Tab</title>
+    <style> * {font-size: xx-large; text-align: center;}</style>
+  </head>
+  <body>
+    <p>This is a very simple and surprisingly effective productivity tool.</p>
+	<p>It just alerts you every <input id="t" type="number" value="10" size="1"> minutes to switch tasks.</p>
+	<p><input id="l" type="text" value="task1; task2; task3 etc." size="30"></p>
+	<p>The alarm lasts <input id="a" type="number" value="8" size="1"> seconds, and the counter restarts by itself.</p>
+    <p id="timer" style="background-color:#4CAF50;"></p>
+	<button id="strt" onclick="start()" autofocus>Start</button>
+	<p id="topic" style="font-size:300%"></p>
+	<!--<input type="checkbox" id="snd" onclick="enblsnd()">-->
+	
+    <script>
+	  var spd, st,tsk,alrm,br,rt,tasks,task;
+        
+	  function start(){		  
+		  switch (strt.innerHTML) {
+			  case "Start":
+			  tsk=Number(document.getElementById("t").value);
+			  alrm=Number(document.getElementById("a").value);
+			  spd=1000*60*tsk;	  
+			  strt.innerHTML="Pause";	
+			  //setInterval(end, spd);
+			  st=Date.now();        
+			  br=setInterval(timer, 10);
+			  es=new Audio("Vacation - AShamaluevMusic.mp3");
+			  if (("Notification" in window) && Notification.permission === "default") {Notification.requestPermission();}
+			  tasks=document.getElementById("l").value.split(";");
+			  task=0;
+			  topic.innerHTML=tasks[0];
+			  break;
+			  case "Pause":
+			  clearInterval(br);			  
+			  strt.innerHTML="Continue";
+			  break;
+			  case "Continue":
+			  st=Date.now()-spd+rt;
+			  br=setInterval(timer,10)
+			  strt.innerHTML="Pause";
+			  break;
+		  }			  
+      }
+	  
+	  /*function enblsnd(){
+	    if (snd.checked==true) {
+		  es.autoplay = true;
+		} else {
+		  es.autoplay = false;
+        }
+	  }*/
+	  
+      function end() {	    
+        st=Date.now();        		
+		/*var context = new AudioContext();
+        var o = context.createOscillator();
+        o.type = "sine";
+		o.connect(context.destination);
+		o.start();
+		o.stop(3);*/
+		es.autoplay = true;
+		es.load();		
+		setTimeout(stop,1000*alrm);		
+		task=(task+1)%tasks.length;
+		topic.innerHTML=tasks[task];
+		if (("Notification" in window) && Notification.permission === "granted") { var notification = new Notification(/*"Switch task"*/ topic.innerHTML );}
+	    
+		/*if (!("Notification" in window)) {
+		  alert("This browser does not support desktop notification");
+        } else if (Notification.permission === "granted") {
+		  var notification = new Notification("Switch task");
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then(function (permission) {
+		    if (permission === "granted") {
+			  var notification = new Notification("Switch task");
+            }
+          });
+        }*/
+	  }
+	  
+	  function stop(){es.pause();}
+
+      function timer() {
+		rt=spd - (Date.now() - st);
+        document.getElementById("timer").style.width = (100 * (rt / spd)) + '%';
+		m=Math.trunc(rt/60000);
+		s=Math.trunc((rt%60000)/1000);
+		s=(s < 10) ? "0" + s : s;
+		document.getElementById("timer").innerHTML=m+":"+s;
+		document.getElementById("title").innerHTML=m+":"+s+" "+topic.innerHTML;
+		if (rt<0) end();
+      }
+    </script>
+  </body>
+</html>
