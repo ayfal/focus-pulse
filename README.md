@@ -5,7 +5,7 @@ It just alerts you every few minutes to switch tasks, so you get a new burst of 
 
 There are 3 versions of this tool:
 
-1. A simple browser version that you can open in your browser locally and is also available online at https://ayfal.github.io/focus-pulse/FocusPulse.html. It supports a small semicolon separated list of tasks.
+1. A simple browser version that you can open in your browser locally and is also available online at https://ayfal.github.io/focus-pulse/Browser%20version/FocusPulse.html. It supports a small semicolon separated list of tasks.
 
 2. A tiny app version that you can run on your computer (you need to have python installed). It supports a small comma separated list of tasks. 
 
@@ -22,7 +22,6 @@ Download all files from the `FocusPulse/word-vba` folder:
 * `FocusPulseForm.frm`
 * `FocusPulseForm.frx`
 * `Module_FocusPulse.bas`
-* (any other `.frm`, `.frx`, `.bas`, `.cls` files)
 
 Keep them together in the same folder.
 
@@ -30,9 +29,7 @@ Keep them together in the same folder.
 
 ## **2. Create a new macro-enabled Word file**
 
-Because Word does not allow macros in `.docx`, you must use:
-
-* **.docm** — macro-enabled document
+Because Word does not allow macros in `.docx`, you must use: **.docm** — macro-enabled document
 
 **Steps:**
 
@@ -77,11 +74,11 @@ Project (Document1)
 
 ## **5. Import the VBA files**
 
-### **Import the modules (.bas)**
+### **Import the module (.bas)**
 
 1. Right-click **Modules**
 2. Select **Import File…**
-3. Choose each `.bas` file
+3. Choose the `.bas` file
 
 (If "Modules" does not exist, right-click the project → **Insert → Module** → then right-click "Modules".)
 
