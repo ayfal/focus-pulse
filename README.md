@@ -74,11 +74,11 @@ Project (Document1)
 
 ## **5. Import the VBA files**
 
-### **Import the modules (.bas)**
+### **Import the module (.bas)**
 
 1. Right-click **Modules**
 2. Select **Import File…**
-3. Choose each `.bas` file
+3. Choose the `.bas` file
 
 (If "Modules" does not exist, right-click the project → **Insert → Module** → then right-click "Modules".)
 
