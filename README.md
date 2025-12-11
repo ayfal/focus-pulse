@@ -5,7 +5,7 @@ It just alerts you every few minutes to switch tasks, so you get a new burst of 
 
 There are 3 versions of this tool:
 
-1. A simple browser version that you can open in your browser locally and is also available online at https://github.com/ayfal/focus-pulse/blob/main/Browser%20version/FocusPulse.html. It supports a small semicolon separated list of tasks.
+1. A simple browser version that you can open in your browser locally and is also available online at https://ayfal.github.io/focus-pulse/Browser%20version/FocusPulse.html. It supports a small semicolon separated list of tasks.
 
 2. A tiny app version that you can run on your computer (you need to have python installed). It supports a small comma separated list of tasks. 
 
