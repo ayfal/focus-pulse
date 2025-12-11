@@ -24,23 +24,24 @@ Attribute VB_Name = "Module1"
 #End If
 
 Public TimerID As LongPtr
-Public UsedCounter As Integer
-Public WastedCounter As Integer
+Public UsedCounter As Date
+Public WastedCounter As Date
 Public IsWorking As Boolean
+Public StartedAt As Date
 
 Public Sub TimerCallback(ByVal hWnd As LongPtr, ByVal uMsg As Long, _
                          ByVal idEvent As LongPtr, ByVal dwTime As Long)
     If IsWorking Then
-        UsedCounter = UsedCounter + 1
+        UsedCounter = UsedCounter + TimeSerial(0, InitializerForm.Minutes.Text, 0)
         msg = "Well done"
     Else
-        WastedCounter = WastedCounter + 1
+        WastedCounter = WastedCounter + TimeSerial(0, InitializerForm.Minutes.Text, 0)
         msg = "Too bad"
     End If
     CreateObject("WScript.Shell").Popup msg & ", time's up! Go Back to Your tasks list to reschedule this task" & vbCrLf & _
          "So far:" & vbCrLf & _
-         "• Time Used: " & UsedCounter & vbCrLf & _
-         "• Time Wasted: " & WastedCounter, _
+         "• Time Used: " & format(UsedCounter, "hh:mm:ss") & vbCrLf & _
+         "• Time Wasted: " & format(WastedCounter, "hh:mm:ss"), _
          0, "To-Do Reminder", 4096
    IsWorking = False
    InitializerForm.UntilLabel = "Get to work!"

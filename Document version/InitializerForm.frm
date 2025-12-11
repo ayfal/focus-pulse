@@ -27,15 +27,17 @@ Sub start_click()
     End If
     UntilLabel = "Work until " & Now + TimeSerial(0, Minutes.Text, 0)
     If IsWorking Then
-        UsedCounter = UsedCounter + 1
+        'UsedCounter = UsedCounter + 1
+        UsedCounter = UsedCounter + Now - StartedAt
         CreateObject("WScript.Shell").Popup "Well done!" & vbCrLf & _
          "So far:" & vbCrLf & _
-         "• Time Used: " & UsedCounter & vbCrLf & _
-         "• Time Wasted: " & WastedCounter, _
+         "• Time Used: " & format(UsedCounter, "hh:mm:ss") & vbCrLf & _
+         "• Time Wasted: " & format(WastedCounter, "hh:mm:ss"), _
          0, "To-Do Reminder", 4096
     End If
     StopMyTimer
     IsWorking = True
+    StartedAt = Now
     StartMyTimer (Minutes.Text)
 End Sub
 
