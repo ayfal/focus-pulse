@@ -29,14 +29,12 @@ To lower the CPU impact, the timer uses Windows API calls to set up a timer that
 
 ## **1. Download the VBA files**
 
-Download all files from the `FocusPulse/word-vba` folder:
+Download these files from this folder:
 
 * `InitializerForm.frm`
 * `InitializerForm.frx`
 * `Module1.bas`
 * `ThisDocument.txt`
-
-Keep them together in the same folder.
 
 ---
 
