@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} InitializerForm 
    Caption         =   "Welcome"
-   ClientHeight    =   3456
+   ClientHeight    =   3030
    ClientLeft      =   -15
    ClientTop       =   30
    ClientWidth     =   5865
@@ -93,7 +93,7 @@ End Sub
 
 Private Sub UserForm_Initialize()
     Me.Width = 305
-    Me.Height = 135
+    Me.Height = 180
     Me.StartUpPosition = 1 ' CenterOwner or 0 for manual
 End Sub
 
