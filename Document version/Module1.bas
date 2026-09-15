@@ -27,6 +27,7 @@ Public UsedCounter As Date
 Public WastedCounter As Date
 Public IsWorking As Boolean
 Public StartedAt As Date
+Public SetTo As Date
 Public IsTimerRunning As Boolean
 
 Public Sub TimerCallback(ByVal hwnd As LongPtr, ByVal uMsg As Long, _
@@ -45,6 +46,7 @@ End Sub
 
 Sub StartMyTimer(Minutes As Double)
     TimerID = SetTimer(0, 0, CLng(1000# * 60# * Minutes), AddressOf TimerCallback)
+    SetTo = Now + TimeSerial(0, Minutes, 0)
     StartedAt = Now
     IsTimerRunning = True
     UpdateLabels
@@ -65,7 +67,7 @@ Sub UpdateLabels()
         Else
             InitializerForm.WastedLabel = format(WastedCounter + Now - StartedAt, "hh:mm:ss")
         End If
-        InitializerForm.TimerLabel = format(InitializerForm.Minutes.Text - Now + StartedAt, "hh:mm:ss")
+        InitializerForm.TimerLabel = format(SetTo - Now, "hh:mm:ss")
 
         Application.OnTime Now + TimeValue("00:00:01"), "UpdateLabels"
     End If
