@@ -65,7 +65,7 @@ Sub UpdateLabels()
         Else
             InitializerForm.WastedLabel = format(WastedCounter + Now - StartedAt, "hh:mm:ss")
         End If
-        InitializerForm.TimerLabel = format(Now - StartedAt, "hh:mm:ss")
+        InitializerForm.TimerLabel = format(InitializerForm.Minutes.Text - Now + StartedAt, "hh:mm:ss")
 
         Application.OnTime Now + TimeValue("00:00:01"), "UpdateLabels"
     End If
