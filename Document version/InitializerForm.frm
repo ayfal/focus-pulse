@@ -31,19 +31,12 @@ Sub start_click()
     If Minutes.Text = "" Or Not IsNumeric(Minutes.Text) Then
         MsgBox "Please enter a numeric value.", vbExclamation
         Exit Sub
-    End If
-    UntilLabel = "Work until " & Now + TimeSerial(0, Minutes.Text, 0)
+    End If    
     If IsWorking Then
         UsedCounter = UsedCounter + Now - StartedAt
-        CreateObject("WScript.Shell").Popup "Well done!" & vbCrLf & _
-         "So far:" & vbCrLf & _
-         "Time Used: " & format(UsedCounter, "hh:mm:ss") & vbCrLf & _
-         "Time Wasted: " & format(WastedCounter, "hh:mm:ss"), _
-         0, "To-Do Reminder", 4096
     End If
     StopMyTimer
     IsWorking = True
-    StartedAt = Now
     StartMyTimer (Minutes.Text)
     BackToDoc
 End Sub
