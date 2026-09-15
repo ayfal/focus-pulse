@@ -1,3 +1,22 @@
+# **PowerShell version**
+
+The repository now includes a standalone PowerShell replacement for the Word macro version.
+
+Files:
+
+* `FocusPulse.ps1` - WPF app with a task list, rich text editor, rescheduling buttons, timer, and bidirectional text support.
+* `FocusPulse.Tests.ps1` - runs the built-in self-test for filename parsing, sorting, and rescheduling.
+
+Run it with:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\FocusPulse.ps1
+```
+
+Task files live in the `Tasks` folder next to the script. Each task is a separate `.txt` file whose name is the due date in `yyyy-MM-dd-HH-mm.txt` format, and the file body is the task text.
+
+---
+
 # **Using FocusPulse in Word**
 
 ## **1. The scheduler**
