@@ -36,6 +36,7 @@ Sub start_click()
         UsedCounter = UsedCounter + Now - StartedAt
     End If
     StopMyTimer
+    WastedLabel = WastedCounter
     IsWorking = True
     StartMyTimer (Minutes.Text)
     BackToDoc
