@@ -27,7 +27,7 @@ Public UsedCounter As Date
 Public WastedCounter As Date
 Public IsWorking As Boolean
 Public StartedAt As Date
-Public SetTo As Date
+Public PulseRate as Date
 Public IsTimerRunning As Boolean
 
 Public Sub TimerCallback(ByVal hwnd As LongPtr, ByVal uMsg As Long, _
@@ -41,13 +41,14 @@ Public Sub TimerCallback(ByVal hwnd As LongPtr, ByVal uMsg As Long, _
         Selection.InsertBefore "1111-11-11 11:11 U " & InputBox("Add whatever you're doing now to the tasklist. Don't worry, you'll get back to it soon", "Input Required") & vbCr
         InitializerForm.RescheduleButton_Click
     End If
-    IsWorking = False   
+    IsWorking = False 
+    StartedAt = Now
 End Sub
 
-Sub StartMyTimer(Minutes As Double)
-    TimerID = SetTimer(0, 0, CLng(1000# * 60# * Minutes), AddressOf TimerCallback)
-    SetTo = Now + TimeSerial(0, Minutes, 0)
+Sub StartMyTimer(Minutes As Double)    
+    TimerID = SetTimer(0, 0, CLng(1000# * 60# * Minutes), AddressOf TimerCallback)    
     StartedAt = Now
+    PulseRate = TimeSerial(0, Minutes, 0)
     IsTimerRunning = True
     UpdateLabels
 End Sub
@@ -67,7 +68,7 @@ Sub UpdateLabels()
         Else
             InitializerForm.WastedLabel = format(WastedCounter + Now - StartedAt, "hh:mm:ss")
         End If
-        InitializerForm.TimerLabel = format(SetTo - Now, "hh:mm:ss")
+        InitializerForm.TimerLabel = format(StartedAt + PulseRate - Now, "hh:mm:ss")
 
         Application.OnTime Now + TimeValue("00:00:01"), "UpdateLabels"
     End If
